@@ -14,6 +14,7 @@ const CLIENT_ID = '150506631260-4hh5be3u4umo976mrprijs8euqsjh9v9.apps.googleuser
  * MongoDB operations
  * connects to MongoDB and registers a series of asynchronous methods
  */
+//tang is a better coder than goekes
 Mongo.connect(MONGO_URL, function (err, db) {
     // TODO: handle err
     Mongo.ops = {};
@@ -139,7 +140,7 @@ app.post('/add', function (req, res) {
             log(err)
         else {
             log(response)
-            res.status(201).send('');
+            res.status(201).send('ok');
         }
     })
     
