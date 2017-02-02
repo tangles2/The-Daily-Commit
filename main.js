@@ -1,4 +1,3 @@
- 
 // TODO : http://stackoverflow.com/questions/38240504/refresh-expired-jwt-in-browser-when-using-google-sign-in-for-websites
 // OR   : http://stackoverflow.com/questions/32150845/how-to-refresh-expired-google-sign-in-logins?rq=1
 // READ : http://stackoverflow.com/questions/3105296/if-rest-applications-are-supposed-to-be-stateless-how-do-you-manage-sessions
@@ -11,7 +10,7 @@ if (window.location.hostname === '127.0.0.1') {
 
 // prepend the url of node.js server
 function route(url) {
-  return 'http://192.168.1.9:3000' + url;
+  return 'http://10.10.102.89:3000' + url;
 }
 
 var profile;      // google user profile
@@ -68,12 +67,23 @@ function post(url, json, success, error) {
     }
   });
 }
+function addText(url){
+    var txt = $('#plus-name').val();
+    var jsonData = {
+        id: profile.getId(),
+        text : txt
+    };
+    post(url, jsonData, function(){
+        $('#mylist').append('<p>' + txt + '</p>')
+    });
+}
 
 $('#plus-button').click(function() {
     $('#plus-button-dialog').dialog('open');
 });
 
 $('#plus-add-button').click(function() {
+    addText('/add');
     $('#plus-button-dialog').dialog('close');
 });
 
