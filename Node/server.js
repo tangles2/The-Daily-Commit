@@ -132,6 +132,19 @@ app.post('/login', function (req, res) {
     Mongo.ops.upsert('login', query, req.body);
     res.status(201).send('ok');
 });
+
+app.get('/add', function(req, res){
+    log('get /add');
+    Mongo.ops.find('add', {}, function(err, response){
+        if(err)
+            log(err)
+        else {
+            log(response)
+            res.status(200).send(response);
+        }
+    });
+});
+
 app.post('/add', function (req, res) {
     log('/add req.body =', req.body);
     var payload = req.body;
@@ -145,7 +158,16 @@ app.post('/add', function (req, res) {
     })
     
 });
-// listen on port 3000
+//app.put('/add',function (req,res)){
+//    mongo.ops.updateOne('add' , query, )
+  //      if(err)
+    //        log(err)
+      //  else {
+        //    log(response)
+          //  res.status(201).send('ok');        
+    //    }
+    //}   
+// listen on port 3000 
 app.listen(3000, function () {
     cacheWellKnownKeys();
     log('listening on port 3000');
